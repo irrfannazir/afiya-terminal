@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "get.h"
+#include "include/get.h"
 #define HER_NAME "aliya"
 
 // #define DEBUG_MODE
@@ -10,7 +10,6 @@
 int main() {
     char command[256];
     int isdone = 0;
-    puts("");
     while (1) {
         printf("%s-terminal> ", HER_NAME);
         if (fgets(command, sizeof(command), stdin) == NULL) break;
@@ -21,7 +20,6 @@ int main() {
         if (strcmp(command, "lets breakup") == 0) break;
 
         // system(command); // runs command in real shell
-        strcat(command, " 2>&1");
         char *result = execute_command(command);
         printf("%s\n", result);
 
