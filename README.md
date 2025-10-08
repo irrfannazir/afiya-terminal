@@ -1,4 +1,4 @@
-# Aliya terminal
+# Aliya Terminal
 This compiler will return you
 
 **Command to compile the program**
