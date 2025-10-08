@@ -2,18 +2,24 @@
 
 
 **Command to compile the program**
+Before compiling the program you need to define your gemini API key to the program.   
+Type in include/constant.h
 ```sh
-./w2c
-gcc aaliya.c src/clean.c src/exec.c src/extract.c src/gcmd.c -o i-love-you
+#define API_KEY "<your-api-key>"
+```
+
+Then compile the program
+```sh
+gcc aaliya.c src/clean.c src/exec.c src/extract.c src/gcmd.c -o come
 ```
 
 **Command to run the program**
 ```sh
-./i-love-you
+./come
 ```
    
 **Command to exit from terminal**
 ```sh
-lets breakup
+go
 ```
    

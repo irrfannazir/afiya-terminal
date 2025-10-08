@@ -27,13 +27,14 @@ int main() {
         if(strcmp(command, "") == 0 || strcmp(result, "") == 0){
             continue;
         }
-        char *msg_cmd = create_openrouter_command("Just say No if the command wrote is wrong. If i wrote the right program say Yes", command, clean_the_result(result));
+        char *msg_cmd = create_openrouter_command("Just say \"No\" if the command wrote is wrong. If i wrote the right program say \"Yes\"", command, clean_the_result(result));
         char *deepseek_return = execute_command(msg_cmd);
         if(strcmp(deepseek_return, "{\"error\":{\"message\":\"Internal Server Error\",\"code\":500}}") == 0){
             printf("%s> Check the Internet connection.\n", HER_NAME);
             continue;
         }
         char *deepseek_result = get_message_content(deepseek_return);
+        // printf("json_result>> %s\n", deepseek_result);
         #ifdef DEBUG_MODE
             printf("Command prompted.\n>> %s \n\n", msg_cmd);
             printf("Result >> %s \n\n", deepseek_return);
