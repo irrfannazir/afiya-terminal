@@ -34,7 +34,6 @@ int main() {
             continue;
         }
         char *deepseek_result = get_message_content(deepseek_return);
-        // printf("json_result>> %s\n", deepseek_result);
         #ifdef DEBUG_MODE
             printf("Command prompted.\n>> %s \n\n", msg_cmd);
             printf("Result >> %s \n\n", deepseek_return);
@@ -60,6 +59,8 @@ int main() {
         }else if(strcmp(deepseek_result, "Yes") == 0 && isdone){
             printf("%s> You have done it right.\n", HER_NAME);
             isdone = 0;
+        }else{
+            printf("%s> You got some error with Gemini\n", HER_NAME);
         }
     }
     return 0;

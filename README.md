@@ -1,5 +1,5 @@
 # Aliya terminal
-
+This compiler will return you
 
 **Command to compile the program**
 Before compiling the program you need to define your gemini API key to the program.   
@@ -22,4 +22,5 @@ gcc aaliya.c src/clean.c src/exec.c src/extract.c src/gcmd.c -o come
 ```sh
 go
 ```
-   
+
+
