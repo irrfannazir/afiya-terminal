@@ -1,5 +1,5 @@
-# Aliya Terminal
-This compiler will return you
+# Aliya Terminala
+Hereby, I introduce Aliya. She explains you what mistake you have done briefly.
 
 **Command to compile the program**
 Before compiling the program you need to define your gemini API key to the program.   
