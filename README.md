@@ -1,4 +1,4 @@
-# Afiya Terminala
+# Afiya Terminal
 Hereby, I introduce Afiya. She explains you what mistake you have done briefly.
 
 **Command to compile the program**
