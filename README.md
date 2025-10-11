@@ -14,14 +14,20 @@ Then compile the program
 gcc afiya.c src/*.c -o hi
 ```
 
-**Command to run the program**
+**Command to activate the environment**
 ```sh
 ./hi
 ```
    
-**Command to exit from terminal**
+**Command to deactivate the environment**
 ```sh
 bye
 ```
 
+**You can talk with afiya.**
+After activating the environment. Type
+```sh
+afiya-terminal> afiya
+```
+Now you can talk with afiya.
 

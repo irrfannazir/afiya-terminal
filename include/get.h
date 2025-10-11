@@ -5,7 +5,7 @@ char* create_openrouter_command(const char *prompt, const char* message, const c
 char* create_simple_command(const char *prompt1);
 char* execute_command(const char* command);
 char *clean_the_result(const char *result);
-void convert_to_text(char *str);
+char *convert_to_text(char *str);
 
 
 static inline int check_the_internet(){
@@ -42,6 +42,8 @@ static inline char *ask_her(char *prompt){
     if(deepseek_result == NULL){
         printf("Unknown error.\n>> %s \n\n", deepseek_response);
     }
-    convert_to_text(deepseek_result);
+    free(msg_cmd);
+    free(deepseek_response);
+    deepseek_result = convert_to_text(deepseek_result);
     return deepseek_result;
 }

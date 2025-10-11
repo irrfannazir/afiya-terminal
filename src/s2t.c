@@ -1,34 +1,35 @@
+#include <stdlib.h>
+#include <string.h>
 
-void convert_to_text(char *str) {
-    char *src = str, *dst = str;
+char *convert_to_text(const char *str) {
+    if (!str) return NULL;
 
-    while (*src) {
-        if (*src == '\\') { // Found a backslash
-            src++;
-            switch (*src) {
-                case 'n':  *dst = '\n'; break;
-                case 't':  *dst = '\t'; break;
-                case 'r':  *dst = '\r'; break;
-                case '\\': *dst = '\\'; break;
-                case '\"': *dst = '\"'; break;
-                case '\'': *dst = '\''; break;
-                case '0':  *dst = '\0'; break;
-                case 'b':  *dst = '\b'; break;
-                case 'f':  *dst = '\f'; break;
-                case 'v':  *dst = '\v'; break;
+    // Allocate memory for the output string (max same length as input)
+    char *result = (char *)malloc(strlen(str) + 1);
+    if (!result) return NULL;
+
+    int i = 0, j = 0;
+    while (str[i] != '\0') {
+        if (str[i] == '\\') {  // found an escape character
+            i++;
+            switch (str[i]) {
+                case 'n': result[j++] = '\n'; break;
+                case 't': result[j++] = '\t'; break;
+                case '\\': result[j++] = '\\'; break;
+                case '"': result[j++] = '"'; break;
+                case 'r': result[j++] = '\r'; break;
+                case '0': result[j++] = '\0'; break;
                 default:
-                    // Unrecognized escape — keep both characters
-                    *dst++ = '\\';
-                    *dst = *src;
+                    // If unknown escape, just copy literally
+                    result[j++] = '\\';
+                    result[j++] = str[i];
                     break;
             }
         } else {
-            *dst = *src;
+            result[j++] = str[i];
         }
-
-        if (*src) src++;
-        dst++;
+        i++;
     }
-
-    *dst = '\0'; 
+    result[j] = '\0';
+    return result;
 }
