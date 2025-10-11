@@ -3,7 +3,7 @@
 
 // Extracts the first "text" value from a JSON string
 const char* get_message_content(const char *json) {
-    static char buffer[256];  // holds extracted value
+    static char buffer[25600];  // holds extracted value
     const char *key = "\"text\":";
     const char *pos = strstr(json, key);
     

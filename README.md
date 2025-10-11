@@ -11,7 +11,7 @@ Type in include/constant.h
 
 Then compile the program
 ```sh
-gcc afiya.c src/clean.c src/exec.c src/extract.c src/gcmd.c -o hi
+gcc afiya.c src/*.c -o hi
 ```
 
 **Command to run the program**
