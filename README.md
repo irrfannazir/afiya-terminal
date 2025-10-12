@@ -11,7 +11,7 @@ Type in include/constant.h
 
 Then compile the program
 ```sh
-gcc afiya.c src/*.c -o terminal
+gcc afiya.c src/*.c -o terminal && gcc shell.c -o hi
 ```
 
 **Command to activate the environment**

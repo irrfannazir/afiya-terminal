@@ -17,5 +17,8 @@ int main(){
     }
     signal(SIGINT, handle_sigint);
     int result = system("terminal");
+    if (result){
+        perror("terminal.exe not found");
+    }
     return 0;
 }
