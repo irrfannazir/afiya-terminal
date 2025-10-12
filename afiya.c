@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <signal.h>
 #include <stdlib.h>
 #include <string.h>
 #include "include/get.h"
+#include "include/shell.h"
 #define HER_NAME "afiya"
 
 
@@ -9,6 +11,12 @@ int main() {
     char command[256];
     int afiya = 0;
     int isdone = 0;
+    FILE *fh = fopen(NULL_FILE, "r");
+    if (!fh){
+        FILE *fh1 = fopen(NULL_FILE, "w");
+        fclose(fh1);
+    }
+    fclose(fh);
     while (1) {
         printf("%s-terminal> ", HER_NAME);
         if (fgets(command, sizeof(command), stdin) == NULL) break;
@@ -16,18 +24,22 @@ int main() {
         // remove newline
         command[strcspn(command, "\n")] = 0;
 
-        if (strcmp(command, "bye") == 0) break;
+        if (strcmp(command, "bye") == 0) {
+            if (remove(NULL_FILE)){
+                perror("Remove wehaveone.ss manually");
+            }
+            break;
+        }
         if (strcmp(command, "afiya") == 0){
             char prompt[256];
             do{
                 puts("You > ");
                 fflush(stdout);
-
                 if (!fgets(prompt, sizeof(prompt), stdin)) break;
-                prompt[strcspn(prompt, "\n")] = 0; 
+                prompt[strcspn(prompt, "\n")] = 0;
                 if (strcmp(prompt, "see you") == 0) break;
                 char *afiya_response = ask_her(prompt);
-                printf("%s> %s\n", HER_NAME, afiya_response);
+                if (afiya_response != NULL) printf("%s> %s\n", HER_NAME, afiya_response);
                 free(afiya_response);
             }while(1);
             continue;
@@ -41,7 +53,7 @@ int main() {
         if(strcmp(command, "") == 0 || strcmp(result, "") == 0){
             continue;
         }
-        char *deepseek_result = ask_model("Just say \"No\" if the command wrote is wrong. If i wrote the right program say \"Yes\"", command, result);
+        char *deepseek_result = ask_model("Just say \"No\" if the command wrote is wrong. If i wrote the right program say \"Yes\"", command, clean_the_result(result));
         if(deepseek_result == NULL){
             continue;
         }else if(strcmp(deepseek_result, "No") == 0){

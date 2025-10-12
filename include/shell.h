@@ -1,0 +1,1 @@
+#define NULL_FILE ".wehaveone.ss"

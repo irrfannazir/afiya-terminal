@@ -1,12 +1,13 @@
 #include <stdlib.h>
 
+extern int error_shown;
+
 char* get_message_content(const char* raw_curl_response);
 char* create_openrouter_command(const char *prompt, const char* message, const char* result);
 char* create_simple_command(const char *prompt1);
 char* execute_command(const char* command);
 char *clean_the_result(const char *result);
 char *convert_to_text(char *str);
-
 
 static inline int check_the_internet(){
     int status = system(
@@ -24,10 +25,10 @@ static inline char *ask_model(char *prompt, char *command, char *result){
         return NULL;
     }
     char *deepseek_result = get_message_content(deepseek_response);
-    if(deepseek_result == NULL){
-        printf("Unknown error.\n>> %s \n\n", deepseek_response);
-    }
-    convert_to_text(deepseek_result);
+    // if(deepseek_result == NULL){
+    //     printf("Unknown error.\n>> %s \n\n", deepseek_response);
+    // }
+    deepseek_result = convert_to_text(deepseek_result);
     return deepseek_result;
 }
 
