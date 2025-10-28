@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include "constant.h"
+// #define DEBUG
 
 extern int error_shown;
 
@@ -20,6 +22,14 @@ static inline int check_the_internet(){
 static inline char *ask_model(char *prompt, char *command, char *result){
     char *msg_cmd = create_openrouter_command(prompt, command, clean_the_result(result));
     char *deepseek_response = execute_command(msg_cmd);
+    #ifdef DEBUG
+        puts(deepseek_response);
+    #endif
+    #ifdef DEEPSEEK
+        if(strcmp(deepseek_response, "{\"error\":{\"message\":\"Insufficient Balance\",\"type\":\"unknown_error\",\"param\":null,\"code\":\"invalid_request_error\"}}") == 0){
+            puts("Check the Deepseek Billing Balance.");
+        }
+    #endif
     if(check_the_internet()){
         printf("Check The Internet.\n");
         return NULL;

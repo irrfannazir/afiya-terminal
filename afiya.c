@@ -4,19 +4,13 @@
 #include <string.h>
 #include "include/get.h"
 #include "include/shell.h"
-#define HER_NAME "afiya"
+#include "include/constant.h"
 
 
 int main() {
     char command[256];
     int afiya = 0;
     int isdone = 0;
-    FILE *fh = fopen(NULL_FILE, "r");
-    if (!fh){
-        FILE *fh1 = fopen(NULL_FILE, "w");
-        fclose(fh1);
-    }
-    fclose(fh);
     while (1) {
         printf("%s-terminal> ", HER_NAME);
         if (fgets(command, sizeof(command), stdin) == NULL) break;
@@ -25,9 +19,6 @@ int main() {
         command[strcspn(command, "\n")] = 0;
 
         if (strcmp(command, "bye") == 0) {
-            if (remove(NULL_FILE)){
-                perror("Remove wehaveone.ss manually");
-            }
             break;
         }
         if (strcmp(command, "afiya") == 0){

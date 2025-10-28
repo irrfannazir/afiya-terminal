@@ -1,1 +1,7 @@
-#define API_KEY "AIzaSyCHPqqtPZWdc6PrWTn66-G9V4FzYR_FROk"
+#define HER_NAME "afiya"
+#define GEMINI
+#ifdef GEMINI
+    #define API_KEY ""
+#elif defined(DEEPSEEK)
+    #define API_KEY ""
+#endif
